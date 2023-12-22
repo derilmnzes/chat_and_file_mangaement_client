@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# React.js Vite Application with TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React.js application built with Vite and TypeScript. It includes configurations for sockets and axios for easy customization.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Prerequisites
 
-## Expanding the ESLint configuration
+- [Node.js](https://nodejs.org/) installed
+- Code editor (e.g., Visual Studio Code)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+   ```bash
+  [ git clone https://github.com/your-username/your-repository.git](https://github.com/derilmnzes/chat_and_file_mangaement_client)https://github.com/derilmnzes/chat_and_file_mangaement_client
+
+  ```
+
+cd client
+Install dependencies:
+
+```bash
+npm install
+
+```
+Run the project in development mode:
+```bash
+npm run dev
+
+```
+Build the project for production:
+```bash
+npm run build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+Configurations
+Socket Configuration
+To configure sockets, go to client/src/socket/socket.ts. Modify the file according to your socket configuration needs.
+
+Axios/Base URL Configuration
+To configure axios or base URL, go to client/src/config/config.ts. Modify the file to set up your axios instance or update the base URL.
+
+
+
+
+

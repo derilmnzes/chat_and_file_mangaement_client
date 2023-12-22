@@ -14,7 +14,7 @@ This is a React.js application built with Vite and TypeScript. It includes confi
 1. Clone the repository:
 
    ```bash
-https://github.com/you](https://github.com/derilmnzes/chat_and_file_mangaement_client
+   https://github.com/you](https://github.com/derilmnzes/chat_and_file_mangaement_client
 
   ```
 

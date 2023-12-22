@@ -45,5 +45,11 @@ To configure axios or base URL, go to client/src/config/config.ts. Modify the fi
 
 
 
+Live Demo:
+```bash
+https://chat-app-and-file-mangaement.onrender.com
+```
+
+
 
 

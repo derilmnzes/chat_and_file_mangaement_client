@@ -4,7 +4,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 const token = localStorage.getItem("token");
 
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: "/",
+  baseURL: process.env.NODE_ENV === "production" ? "/" : "http:localhost:3000",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",

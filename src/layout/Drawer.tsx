@@ -138,8 +138,8 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {[
-            { title: "Group Chat", link: "/" },
             { title: "File Management", link: "/chat" },
+            { title: "Group Chat", link: "/" },
           ].map((text, index) => (
             <ListItem key={text.title} disablePadding sx={{ display: "block" }}>
               <Link to={text.link}>

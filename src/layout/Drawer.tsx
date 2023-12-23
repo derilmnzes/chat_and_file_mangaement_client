@@ -18,7 +18,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import FileIcon from "@mui/icons-material/FileOpen";
 import ChatIcon from "@mui/icons-material/Chat";
-import { Link } from "react-router-dom";
+import { Link, matchRoutes, useLocation, useRoutes } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -92,6 +92,9 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
+
+  const location = useLocation()
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -138,8 +141,9 @@ export default function MiniDrawer() {
         <Divider />
         <List>
           {[
-            { title: "File Management", link: "/chat" },
-            { title: "Group Chat", link: "/" },
+              { title: "Group Chat", link: "/" },
+            { title: "File Management", link: "/chat" }
+          ,
           ].map((text, index) => (
             <ListItem key={text.title} disablePadding sx={{ display: "block" }}>
               <Link to={text.link}>
@@ -147,6 +151,7 @@ export default function MiniDrawer() {
                   sx={{
                     minHeight: 48,
                     justifyContent: open ? "initial" : "center",
+                    background:location.pathname === text.link ? "#1876d2" : "",
                     px: 2.5,
                   }}
                 >
@@ -155,9 +160,10 @@ export default function MiniDrawer() {
                       minWidth: 0,
                       mr: open ? 3 : "auto",
                       justifyContent: "center",
+                      color:location.pathname === text.link ? "white" : "black",
                     }}
                   >
-                    {index % 2 === 0 ? <FileIcon /> : <ChatIcon />}
+                    {index % 2 === 0 ? <FileIcon /> :<ChatIcon />   }
                   </ListItemIcon>
                   <ListItemText
                     primary={text.title}

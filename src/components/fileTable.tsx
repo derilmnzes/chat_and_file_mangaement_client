@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useAppDispatch } from "../redux/hooks";
-import { deleteFile, setFileId } from "../redux/features/file";
+import { deleteFile, setFileId, setUpdate } from "../redux/features/file";
 import { Link } from "react-router-dom";
 import { Delete } from "@mui/icons-material";
 
@@ -14,6 +14,7 @@ const TableRow = ({ originalName, id }: TableRowProps) => {
 
   const handleUpdate = (id: string) => {
     dispatch(setFileId(id));
+    dispatch(setUpdate(Math.random()))
   };
 
   return (

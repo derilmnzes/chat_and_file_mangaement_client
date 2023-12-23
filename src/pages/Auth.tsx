@@ -21,9 +21,11 @@ export default function Auth() {
     password: "",
   });
 
+ 
   useEffect(() => {
+   
     if (isAuth) {
-      navigate("/");
+      navigate('/');
     }
   }, [isAuth]);
 

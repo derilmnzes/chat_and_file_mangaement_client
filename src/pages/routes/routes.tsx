@@ -1,9 +1,9 @@
-import  { useEffect, lazy, Suspense } from "react";
+import  {  lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axiosInstance from "../../config/axios";
-import { useAppDispatch } from "../../redux/hooks";
-import { setUser } from "../../redux/features/user";
+
 import TextFileRenderer from "../renderFile";
+
+
 
 const Home = lazy(() => import("../Home"));
 const Auth = lazy(() => import("../Auth"));
@@ -35,31 +35,7 @@ const LazyLoadedProtectedRoutes = () => (
 );
 
 export function Router() {
-  const dispatch = useAppDispatch();
 
-  const verifyUser = async () => {
-    try {
-      const res = await axiosInstance.get("/user/verify");
-      dispatch(
-        setUser({
-          isAuth: true,
-          user: res.data.name,
-        })
-      );
-    } catch (err) {
-      dispatch(
-        setUser({
-          isAuth: false,
-          user: undefined,
-        })
-      );
-      localStorage.removeItem('token')
-    }
-  };
-
-  useEffect(() => {
-    verifyUser();
-  }, []);
 
   return (
     <BrowserRouter>

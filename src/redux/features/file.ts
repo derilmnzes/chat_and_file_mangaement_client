@@ -16,7 +16,7 @@ export interface fileSliceState {
   loading: boolean;
   error: string | null;
   file:string;
-  update:Boolean;
+  update:null | number;
 }
 
 const initialState: fileSliceState = {
@@ -24,7 +24,7 @@ const initialState: fileSliceState = {
   file:"",
   loading: false,
   error: null,
-  update:false
+  update:null
 };
 
 export const fileSlice = createSlice({
@@ -44,7 +44,6 @@ export const fileSlice = createSlice({
     },
     setFileId:(state, action) => {
         state.file = action.payload
-        state.update = true
       },
       setUpdate:(state,action)=>{
         state.update = action.payload
@@ -55,10 +54,15 @@ export const fileSlice = createSlice({
 export const { setFileError,setUpdate, setFiles,setFileId, setFileLoader } = fileSlice.actions;
 
 export const getFiles: any = () => async (dispatch: Dispatch) => {
+  const token = localStorage.getItem("token");
   try {
     dispatch(setFileLoader(true));
 
-    const response = await axiosInstance.get("/file");
+    const response = await axiosInstance.get("/file",{
+      headers:{
+        "Authorization":`Bearer ${token}`
+      }
+    });
     const fileData = response?.data;
 
     dispatch(
@@ -117,7 +121,7 @@ export const updateFile = (data: any,file:string) => async (dispatch: Dispatch) 
       });
       dispatch(getFiles());
       dispatch(setFileId(""))
-      dispatch(setUpdate(false))
+      dispatch(setUpdate(null))
     } catch (error) {
       const err = handleAxiosError(error);
   

@@ -15,7 +15,7 @@ export interface User {
 }
 
 export interface UserSliceState {
-  user:string | undefined;
+  user: string | undefined;
   loading: boolean;
   isAuth: boolean;
   error: string | null;
@@ -60,7 +60,7 @@ export const handleAuth =
       );
       const userData = response?.data;
 
-      localStorage.setItem("token", userData.token);
+     await localStorage.setItem("token", userData.token);
       dispatch(
         setUser({
           user: userData?.name,
@@ -81,6 +81,5 @@ export const handleAuth =
       dispatch(setUserLoader(false));
     }
   };
-
 
 export default userSlice.reducer;

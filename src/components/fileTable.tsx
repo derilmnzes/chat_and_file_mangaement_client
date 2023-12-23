@@ -38,7 +38,7 @@ export default function DataTable({ rows }: { rows: TableProps[]}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.length > 0 ? rows.map((row) => (
             <TableRow
               key={row?.originalName}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -64,7 +64,7 @@ export default function DataTable({ rows }: { rows: TableProps[]}) {
                 <Button >View</Button></Link>
               </TableCell>
             </TableRow>
-          ))}
+          )) : <div className="p-10 flex items-center justify-center"><span>No Files Found Please upload one</span></div>}
         </TableBody>
       </Table>
     </TableContainer>

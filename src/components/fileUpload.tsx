@@ -116,6 +116,7 @@ const FileUpload: React.FC<FileUploadProps> = () => {
       <Input
         id="contained-button-file"
         type="file"
+        
         onChange={handleFileChange}
         style={{ display: "none" }}
       />

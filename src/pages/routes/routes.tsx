@@ -53,6 +53,7 @@ export function Router() {
           user: undefined,
         })
       );
+      localStorage.removeItem('token')
     }
   };
 

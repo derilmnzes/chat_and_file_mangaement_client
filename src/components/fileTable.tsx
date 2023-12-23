@@ -1,76 +1,84 @@
-import * as React from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import { useAppDispatch } from "../redux/hooks";
 import { deleteFile, setFileId } from "../redux/features/file";
 import { Link } from "react-router-dom";
+import { Delete } from "@mui/icons-material";
 
-interface TableProps {
-  action: React.ReactNode;
+interface TableRowProps {
   originalName: string;
   id: string;
 }
 
-export default function DataTable({ rows }: { rows: TableProps[]}) {
+const TableRow = ({ originalName, id }: TableRowProps) => {
   const dispatch = useAppDispatch();
 
+  const handleUpdate = (id: string) => {
+    dispatch(setFileId(id));
+  };
 
-  const handleUpdate = (id:string) => {
-    dispatch(setFileId(id))
-  }
-  
   return (
-   <>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="left">Id</TableCell>
-            <TableCell align="left">Actions</TableCell>
-            <TableCell align="left">View</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.length > 0 ? rows.map((row) => (
-            <TableRow
-              key={row?.originalName}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row?.originalName}
-              </TableCell>
-              <TableCell align="left">{row?.id}</TableCell>
-              <TableCell align="left">
-                <Button onClick={()=>handleUpdate(row?.id)}>Update</Button>
-                <Button
-                  variant="contained"
-                  onClick={() => {
-                    dispatch(deleteFile(row?.id));
-                  }}
-                  color="error"
-                >
-                  Delete
-                </Button>
-              </TableCell>
-              <TableCell align="left">
-                <Link to={`/file/${row?.id}`}>
-                <Button >View</Button></Link>
-              </TableCell>
-            </TableRow>
-          )) : <div className="p-10 flex items-center justify-center"><span>No Files Found Please upload one</span></div>}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    
-   
-    
-    </>
+    <div className="flex flex-row border-gray-200 px-1 md:px-4 rounded-lg py-2 border my-2  items-center">
+      <div className="w-1/4">
+        <span className="md:text-xl text-xs">{originalName}</span>
+      </div>
+      <div className="w-1/4 line-clamp-2">
+        <span className="md:text-xl text-xs">{id}</span>
+      </div>
+      <div className="w-1/4 text-center">
+        <Button onClick={() => handleUpdate(id)}>Update</Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            dispatch(deleteFile(id));
+          }}
+          color="error"
+        >
+          <Delete />
+        </Button>
+      </div>
+      <div className="w-1/4 text-end">
+        <Link to={`/file/${id}`}>
+          <Button>View</Button>
+        </Link>
+      </div>
+    </div>
   );
+};
+
+interface DataTableProps {
+  rows: TableRowProps[];
 }
+
+const DataTable = ({ rows }: DataTableProps) => {
+  return (
+    <div className="shadow-lg p-2 md:p-5 my-10 rounded-lg">
+      {rows.length > 0 ? (
+        <div>
+          <div className="flex flex-row border border-gray-200 px-1 md:px-4 rounded-lg py-2 items-center justify-between">
+            <div className="w-1/4">
+              <span className="md:text-xl text-xs">File Name</span>
+            </div>
+            <div className="w-1/4">
+              <span className="md:text-xl text-xs">File Id</span>
+            </div>
+            <div className="w-1/4 text-center">
+              <span className="md:text-xl text-xs">Actions</span>
+            </div>
+            <div className="w-1/4 text-end">
+              <span className="md:text-xl text-xs">View File</span>
+            </div>
+          </div>
+          {rows.map((row) => (
+            <TableRow key={row.id} {...row} />
+          ))}
+        </div>
+      ) : (
+        <div className="p-10 flex items-center justify-center">
+          <span>No Files Found Please upload one</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default DataTable;

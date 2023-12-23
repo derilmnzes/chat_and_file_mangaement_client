@@ -9,6 +9,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div>
         <Header />
-        {children}</div>
+       <main className='mt-20 ml-20'>
+       {children}</main></div>
   );
 }

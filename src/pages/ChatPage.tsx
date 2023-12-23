@@ -1,5 +1,5 @@
-import  { useEffect, useState } from "react";
-import { TextField, Button, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { TextField, Button } from "@mui/material";
 import Layout from "../layout/Layout";
 import ChatBubble from "../components/chatBubble";
 import ChatIcon from "@mui/icons-material/ChatSharp";
@@ -9,8 +9,6 @@ interface Message {
   name: string;
   message: string;
 }
-
-
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -26,13 +24,12 @@ export default function ChatPage() {
 
     // Listen for stored messages
     const storedMessageListener = (storedMessages: Message[]) => {
-      console.log(storedMessages)
+      console.log(storedMessages);
       // Update the messages state with stored messages
       setMessages((prevMessages) => [...prevMessages, ...storedMessages]);
     };
 
     socket.on("Stored message", storedMessageListener);
-    
 
     // Clean up event listeners
     return () => {
@@ -48,25 +45,25 @@ export default function ChatPage() {
 
   return (
     <Layout>
-      <div className="h-[100vh] flex flex-row items-center justify-center">
+      <div className="h-[90vh] flex flex-row items-center justify-center">
         {toggleState ? (
-          <div className="w-full flex flex-row justify-between items-end  h-[100%] ml-20">
-            <div className="w-[50%] m-auto h-[100%]">
-              <div className="w-[100%] h-[90%] flex-col flex justify-end">
+          <div className="w-full flex flex-row justify-between items-end  h-[100%]">
+            <div className="md:w-[50%] w-[80%] ml-[18%] md:m-auto h-[100%]">
+              <div className="w-full h-[90%]   flex-col flex justify-end">
                 {messages?.length < 1 && (
                   <div className="text-center">
-                    <Typography variant="subtitle2">
-                      Please Follow the rules and regulations
-                    </Typography>
+                    <h1>Welcome to the Group Chat</h1>
                   </div>
                 )}
-                {messages?.map((messages, index) => (
-                  <ChatBubble
-                    key={index}
-                    messages={messages}
-                    isUser={index % 2 === 0}
-                  />
-                ))}
+                <div className="overflow-y-scroll">
+                  {messages?.map((messages, index) => (
+                    <ChatBubble
+                      key={index}
+                      messages={messages}
+                      isUser={index % 2 === 0}
+                    />
+                  ))}
+                </div>
               </div>
               <div className="w-[100%] h-[10%] flex flex-row items-center">
                 <TextField
@@ -97,7 +94,7 @@ export default function ChatPage() {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-4xl mb-2 font-bold">Join the Group Chat</h1>
+            <h1 className="md:text-4xl mb-2 font-bold">Join the Group Chat</h1>
             <Button
               variant="contained"
               onClick={() => {

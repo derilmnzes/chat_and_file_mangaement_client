@@ -62,7 +62,7 @@ export default function Auth() {
 
   return (
     <div className="flex h-[100vh] flex-col items-center justify-center">
-      <div className="h-[50%] shadow-xl w-1/3  p-10 rounded-lg">
+      <div className="md:h-[50%]  shadow-xl w-[80%] m-auto md:w-1/3  p-10 rounded-lg">
         <Typography component="h1" textAlign="center" variant="h5">
           {formType === FormType.Signup ? "Sign Up" : "Sign In"}
         </Typography>

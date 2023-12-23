@@ -24,7 +24,7 @@ const SimpleModal: React.FC<SimpleModalProps> = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 650,
+          width:'90%',
           bgcolor: "background.paper",
           boxShadow: 24,
           p: 4,

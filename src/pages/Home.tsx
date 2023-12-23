@@ -14,7 +14,7 @@ export default function Home() {
   }, []);
   return (
     <Layout>
-      <div className="mt-20  w-[80%] m-auto">
+      <div className="w-[95%] md:w-[80%] md:m-auto">
         <FileUpload />
 
         <div className="mt-10">

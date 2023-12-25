@@ -45,11 +45,11 @@ export default function ChatPage() {
 
   return (
     <Layout>
-      <div className="h-[90vh] flex flex-row items-center justify-center">
+      <div className="h-[90dvh] flex flex-row items-center justify-center">
         {toggleState ? (
           <div className="w-full flex flex-row justify-between items-end  h-[100%]">
             <div className="md:w-[50%] w-[80%] ml-[18%] md:m-auto h-[100%]">
-              <div className="w-full h-[90%]   flex-col flex justify-end">
+              <div className="w-full h-[85%]   flex-col flex justify-end">
                 {messages?.length < 1 && (
                   <div className="text-center">
                     <h1>Welcome to the Group Chat</h1>
